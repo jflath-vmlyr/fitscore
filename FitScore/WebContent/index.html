@@ -1,0 +1,108 @@
+<html>
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script type='text/javascript'>
+	
+	$(document).ready(function(){
+
+		$("#distance").keypress( function(){   
+			$( "#fitScore" ).html("<br/>"); 
+			$("#submitButton").show();
+			$("#fitScore").hide();
+			
+		});
+
+		$("#submitButton").click( function(){
+			$("#submitButton").hide();
+			$("#fitScore").show();
+			var url = "/FitScore/rest/Service/calculate?distance="+ $('#distance').val() + "&pace=" + $('#pace').val() + "&time=" + $('#time').val(); 
+					
+			$.get( url, function( data ) {
+				  $( "#fitScore" ).html( data );
+				});
+		});
+		
+		$("#time").keypress( function(){   
+			$( "#pace" ).val(""); 
+			$( "#fitScore" ).html("<br/>"); 
+			$("#submitButton").show();
+			$("#fitScore").hide();
+		});
+		
+		$("#pace").keypress( function(){   
+			$( "#time" ).val(""); 
+			$( "#fitScore" ).html("<br/>");
+			$("#submitButton").show();
+			$("#fitScore").hide();
+		});
+				
+	});
+	</script>
+
+	<style>
+		.fitInput {
+		    font-size:25px;
+		    height: 40px;
+		    width: 150px;
+		    text-align: center;
+		    
+		}
+		
+		body {
+			text-align: center; 
+			color: white;
+			font-size: 40px;
+			background-color: black;
+		}
+		
+		button {
+			background-color: green; 
+			border: none; 
+			color: white; 
+			padding: 15px 32px; 
+			text-align: center; 
+			text-decoration: none; 
+			display: inline-block; 
+			font-size: 16px; 
+			margin: 4px 2px;
+			cursor: pointer;
+		}
+		
+		.smallText {
+			font-size: small;
+		}
+		
+		.labelText{
+			margin-bottom: 20;
+		}
+	</style>
+	
+	
+</head>
+
+<body >
+		<div>
+			<span id="fitScore"></span>
+			<button id="submitButton">Calculate</button>
+		</div>
+		<input class="fitInput" type="number" id="distance" name="distance" step="0.01"/>
+		<div class="labelText">Distance
+		<div class="smallText">Miles in decimal format (3.1)</div></div>
+		
+		<span class="smallText">For the numeric inputs, use a . instead of the : and input either Pace or Time</span><br/>
+		<input class="fitInput" type="number" id="pace" name="pace" step="0.01"/>
+		<div class="labelText">Pace
+			<div class="smallText">Pace per mile (8.14)</div>
+		</div>
+		
+		<input class="fitInput" type="number" id="time"	name="time" step="0.01"/>
+		<div class="labelText">Time
+			<div class="smallText">Overall run duration (24.20)</div>
+		</div>
+		
+		<div><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>
+</body>
+</html>
