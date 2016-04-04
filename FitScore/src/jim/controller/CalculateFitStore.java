@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response;
 
 import jim.domain.FitScore;
 import jim.service.FITScoreService;
+import jim.util.Logger;
 
 @Path("/Service")
 public class CalculateFitStore {
@@ -28,6 +29,8 @@ public class CalculateFitStore {
 	@Path("/calculate")
 	public Response calculate( @QueryParam("distance") String distance,  @QueryParam("pace") String pace, @QueryParam("time")String time  ) {
 
+Logger.debug("Jim testing");
+		
 		pace = pace.replaceAll(":", ".");
 	
 		if( pace.isEmpty() && time.isEmpty() )
