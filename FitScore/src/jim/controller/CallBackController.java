@@ -14,7 +14,7 @@ public class CallBackController {
 	public Response handleCallback( @QueryParam("code") String code   ) {
 
 		System.out.println(code);
-		return Response.status(500).entity( "ERROR" ).build();
+		return Response.status(500).entity( code ).build();
 	}
 
 	@GET
@@ -22,7 +22,7 @@ public class CallBackController {
 	public Response handleCallbackFromCode( @QueryParam("code") String code   ) {
 
 		System.out.println(code);
-		return Response.status(500).entity( "ERROR" ).build();
+		return Response.status(500).entity( code ).build();
 	}
 	
 //redirect_uri = 'http://localhost:8080/FitScore/rest/CallBack/FromCode'

@@ -29,7 +29,7 @@ public class CalculateFitStore {
 	@Path("/calculate")
 	public Response calculate( @QueryParam("distance") String distance,  @QueryParam("pace") String pace, @QueryParam("time")String time  ) {
 
-Logger.debug("Jim testing");
+		Logger.debug("Jim testing", this.getClass());
 		
 		pace = pace.replaceAll(":", ".");
 	
